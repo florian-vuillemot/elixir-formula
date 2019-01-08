@@ -16,6 +16,7 @@ Install prerequisites:
             - wget
             - wxBase.x86_64
 
+{% if not salt['file.file_exists']('erlang-solutions-1.0-1.noarch.rpm') %}
 Download rpm file:
     cmd.run:
         - name: wget https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm
@@ -23,6 +24,7 @@ Download rpm file:
 Setup yum repo:
     cmd.run:
         - name: rpm -Uvh erlang-solutions-1.0-1.noarch.rpm
+{% endif %}
 
 esl-erlang:
     pkg.installed
